@@ -1,0 +1,57 @@
+ORDINE APERTO
+
+{
+	"topic":"order",
+	"id":"111498584_BTCUSDT_122686743005", 
+	"creationTime":1706517031805,
+	"data":
+		[
+			{
+				"category":"linear",
+				"symbol":"BTCUSDT",
+				"orderId":"dd59fb55-14f2-4f09-9939-eb7bcc7a9618",
+				"orderLinkId":"",
+				"blockTradeId":"",
+				"side":"Buy",    ///E' un long
+				"positionIdx":0,
+				"orderStatus":"Filled", //aperto ora (è una posizione)
+				"cancelType":"UNKNOWN",
+				"rejectReason":"EC_NoError", //nessun errore
+				"timeInForce":"IOC",
+				"isLeverage":"",
+				"price":"44124.5",
+				"qty":"0.001", //QTY quantita in asset tradata
+				"avgPrice":"42023.4",
+				"leavesQty":"0",
+				"leavesValue":"0",
+				"cumExecQty":"0.001",
+				"cumExecValue":"42.0234",
+				"cumExecFee":"0.02311287",
+				"orderType":"Market", //Aquisto a mercato
+				"stopOrderType":"",
+				"orderIv":"",
+				"triggerPrice":"",
+				"takeProfit":"",
+				"stopLoss":"",
+				"triggerBy":"",
+				"tpTriggerBy":"",
+				"slTriggerBy":"",
+				"triggerDirection":0, 
+				"placeType":"",
+				"lastPriceOnCreated":"42023.4", //PREZZO APERTURA
+				"closeOnTrigger":false,
+				"reduceOnly":false,
+				"smpGroup":0,
+				"smpType":"None",
+				"smpOrderId":"",
+				"slLimitPrice":"0",
+				"tpLimitPrice":"0",
+				"tpslMode":"UNKNOWN",
+				"createType":"CreateByUser",
+				"marketUnit":"",
+				"createdTime":"1706517031801",
+				"updatedTime":"1706517031803",
+				"feeCurrency":""
+			}
+		]
+	}
