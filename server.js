@@ -130,14 +130,6 @@ const onMessage = (pl) => {
   //SETTA LA LEVA UGUALE
   if(obj_pl.topic=="position")
   {
-    // const getMasterPositionPromise = MASTER_CLIENT_V5.getPositionInfo({
-    //   category:"linear",
-    //    symbol:"MANTAUSDT"
-    // }).then(response => {
-    //   console.log(response.result.list);
-    // }).catch(error=>{
-    //   console.error(error);
-    // });
     (async() =>{
         try{
           let setResult = await COPIER_CLIENT_V5.setLeverage({
@@ -191,18 +183,6 @@ const onMessage = (pl) => {
   if(obj_pl.data[0].orderStatus=="Filled")
   {
 
-
-
-
-    //FIX DI EMERGENZA 
-    
-    // if(obj_pl.data[0].symbol=="BTCUSDT"){
-    //   qty_decimal=3;
-    // }
-    // if(obj_pl.data[0].symbol=="ETHUSDT"){
-    //   qty_decimal=2;
-    // }
-
     Promise.all([getMasterBalancePromise, getCopierBalancePromise,minOrderQtyPromise]).then(() => {
       qty_decimal = calculateQtyDecimal(qty_min);
       let qty_client = ((obj_pl.data[0].qty * copier_total_usdt_balance) / master_total_usdt_balance).toFixed(qty_decimal);
@@ -231,41 +211,6 @@ const onMessage = (pl) => {
   {
     if(obj_pl.data[1].orderStatus=="Filled")
     {
-
-    // //CONTROLLO PER POSIZIONI (NON CHIUDO SUL CLIENT SE CHIUDE PRIMA DEL MASTER)
-    // //prendi posione attive master
-    // const getMasterPositionPromise = MASTER_CLIENT_V5.getPositionInfo({
-    //   category:obj_pl.data[1].category,
-    //   symbol:obj_pl.data[1].symbol
-    //  }).then(response => {
-    //   console.log(response.result.list);
-    // }).catch(error=>{
-    //   console.error(error);
-    // });
-
-    // //prendi posione attive copiatore
-    // const getCopierPositionPromise = COPIER_CLIENT_V5.getPositionInfo({
-    //   category:obj_pl.data[1].category,
-    //   symbol:obj_pl.data[1].symbol
-    //   }).then(response => {
-    //   console.log(response.result.list);
-    // }).catch(error=>{
-    //   console.error(error);
-    // });
-
-    // Promise.all([getMasterPositionPromise,getCopierPositionPromise]).then(()=>{
-    //   const numMasterPositions = masterPositions.result.list.filter(position => position.side !== "").length;
-    //   const numCopierPositions = copierPositions.result.list.filter(position => position.side !== "").length;
-
-    //   if (numMasterPositions === numCopierPositions) {
-    //     return;
-    //   }
-    // }).catch(error =>{
-    //   console.error('Failed to get positions: ', error);
-    // })
-      
-
-
 
     Promise.all([getMasterBalancePromise, getCopierBalancePromise,,minOrderQtyPromise]).then(() => {
         qty_decimal = calculateQtyDecimal(qty_min);
@@ -318,5 +263,39 @@ function calculateQtyDecimal(minOrderQty) {
   const [, decimals] = minOrderQty.split('.');
   return decimals ? decimals.length : 0;
 }
+
+
+    // //CONTROLLO PER POSIZIONI (NON CHIUDO SUL CLIENT SE CHIUDE PRIMA DEL MASTER)
+    // //prendi posione attive master
+    // const getMasterPositionPromise = MASTER_CLIENT_V5.getPositionInfo({
+    //   category:obj_pl.data[1].category,
+    //   symbol:obj_pl.data[1].symbol
+    //  }).then(response => {
+    //   console.log(response.result.list);
+    // }).catch(error=>{
+    //   console.error(error);
+    // });
+
+    // //prendi posione attive copiatore
+    // const getCopierPositionPromise = COPIER_CLIENT_V5.getPositionInfo({
+    //   category:obj_pl.data[1].category,
+    //   symbol:obj_pl.data[1].symbol
+    //   }).then(response => {
+    //   console.log(response.result.list);
+    // }).catch(error=>{
+    //   console.error(error);
+    // });
+
+    // Promise.all([getMasterPositionPromise,getCopierPositionPromise]).then(()=>{
+    //   const numMasterPositions = masterPositions.result.list.filter(position => position.side !== "").length;
+    //   const numCopierPositions = copierPositions.result.list.filter(position => position.side !== "").length;
+
+    //   if (numMasterPositions === numCopierPositions) {
+    //     return;
+    //   }
+    // }).catch(error =>{
+    //   console.error('Failed to get positions: ', error);
+    // })
+      
 
 
