@@ -93,6 +93,7 @@ const onPong = () => {
 
 //EVENTO APERTURA ORDINI
 const onMessage = (pl) => {
+
   console.log(pl.toString());
 
   //deserializzazione messaggio dal ws del master
@@ -154,22 +155,6 @@ const onMessage = (pl) => {
   }
 
   if(obj_pl.topic=="order"){
-
-  // switch(obj_pl.data[0].orderStatus)
-  // {
-  //   case "Untriggered":
-  //     console.log("questo è un conditional! Sta aspettando di essere triggerato!");
-  //     break;
-  //   case "Deactivated":
-  //     console.log("questo è un conditional deattivato! E' stato cancellato da roma!");
-  //     break;
-  //   case "Filled":
-  //     console.log("questa è una posizione attiavta in tempo reale! qua effettivamente deve essere copiato l'ordine!");  
-  //   case "Triggered":
-  //     console.log("Questo è un ordine partito dal takeprofit/stoploss o trigger");
-  //   default:
-  //     break;
-  // }
 
   const getMasterBalancePromise = MASTER_CLIENT_V5.getWalletBalance({
     accountType: "UNIFIED",
@@ -329,9 +314,7 @@ const onError = async (err) => {
 
 //functions
 function calculateQtyDecimal(minOrderQty) {
-  // Divide la stringa in base al separatore decimale e ottiene la parte dopo la virgola
   const [, decimals] = minOrderQty.split('.');
-  // Restituisce la lunghezza della parte decimale
   return decimals ? decimals.length : 0;
 }
 
