@@ -267,8 +267,9 @@ const onMessage = (pl) => {
 
 
 
-    Promise.all([getMasterBalancePromise, getCopierBalancePromise]).then(() => {
-        let qty_client = ((obj_pl.data[0].qty * copier_total_usdt_balance) / master_total_usdt_balance).toFixed(1);
+    Promise.all([getMasterBalancePromise, getCopierBalancePromise,,minOrderQtyPromise]).then(() => {
+        qty_decimal = calculateQtyDecimal(qty_min);
+        let qty_client = ((obj_pl.data[0].qty * copier_total_usdt_balance) / master_total_usdt_balance).toFixed(qty_decimal);
         (async () => {
           try{
             let orderResult = await COPIER_CLIENT_V5.submitOrder({
