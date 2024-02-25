@@ -1,6 +1,3 @@
-//DEVNOTE
-//developed by ROM CLOUDIA
-//forza Napoli
 
 import WebSocket from "ws";
 import { promisify } from "util";
